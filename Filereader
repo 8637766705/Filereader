@@ -1,0 +1,25 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ReadTextFile {
+    public static void main(String[] args) {
+        // Specify the path to your text file
+        String filePath = "sample.txt";
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            System.out.println("Contents of " + filePath + ":");
+            System.out.println("--------------------------------");
+            
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            
+            System.out.println("--------------------------------");
+            System.out.println("File reading completed.");
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+    }
+}
