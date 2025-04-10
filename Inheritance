@@ -1,0 +1,132 @@
+
+class Animal {
+   
+    private String name;
+    private int age;
+
+   
+    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    
+    public void eat() {
+        System.out.println(name + " is eating.");
+    }
+
+    public void sleep() {
+        System.out.println(name + " is sleeping.");
+    }
+
+    
+    public void makeSound() {
+        System.out.println(name + " makes a generic animal sound.");
+    }
+
+  
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+
+class Dog extends Animal {
+    
+    private String breed;
+
+  
+    public Dog(String name, int age, String breed) {
+        super(name, age); 
+        this.breed = breed;
+    }
+
+    
+    @Override
+    public void makeSound() {
+        System.out.println(getName() + " says: Woof! Woof!");
+    }
+
+    
+    public void fetch() {
+        System.out.println(getName() + " is fetching the ball.");
+    }
+
+   
+    public String getBreed() {
+        return breed;
+    }
+}
+
+
+class Cat extends Animal {
+   
+    private boolean isIndoor;
+
+   
+    public Cat(String name, int age, boolean isIndoor) {
+        super(name, age); 
+        this.isIndoor = isIndoor;
+    }
+
+   
+    @Override
+    public void makeSound() {
+        System.out.println(getName() + " says: Meow!");
+    }
+
+   
+    public void scratch() {
+        System.out.println(getName() + " is scratching the furniture.");
+    }
+
+   
+    public boolean isIndoor() {
+        return isIndoor;
+    }
+}
+
+
+public class InheritanceDemo {
+    public static void main(String[] args) {
+       
+        Animal genericAnimal = new Animal("Generic Animal", 5);
+        Dog myDog = new Dog("Buddy", 3, "Golden Retriever");
+        Cat myCat = new Cat("Whiskers", 2, true);
+
+        System.out.println("----- Demonstrating Animal Class -----");
+        genericAnimal.eat();
+        genericAnimal.sleep();
+        genericAnimal.makeSound();
+
+        System.out.println("\n----- Demonstrating Dog Class -----");
+        System.out.println(myDog.getName() + " is a " + myDog.getBreed() + " and is " + myDog.getAge() + " years old.");
+        myDog.eat();       
+        myDog.sleep();      
+        myDog.makeSound();  
+        myDog.fetch();      
+
+        System.out.println("\n----- Demonstrating Cat Class -----");
+        System.out.println(myCat.getName() + " is " + myCat.getAge() + " years old and is " + 
+                          (myCat.isIndoor() ? "an indoor cat." : "an outdoor cat."));
+        myCat.eat();        
+        myCat.sleep();      
+        myCat.makeSound();  
+        myCat.scratch();   
+
+        
+        System.out.println("\n----- Polymorphism Demonstration -----");
+        Animal[] animals = new Animal[3];
+        animals[0] = genericAnimal;
+        animals[1] = myDog;  
+        animals[2] = myCat;  
+
+        for (Animal animal : animals) {
+            animal.makeSound();  
+        }
+    }
+}
